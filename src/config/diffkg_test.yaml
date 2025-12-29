@@ -1,0 +1,53 @@
+# config/diffkg_test.yaml
+model: DiffKGReChorus
+reader: DiffKGReader
+runner: DiffKGRunner
+
+# 数据参数
+data_path: Datasets/test
+kg_file: kg.txt
+train_mat: trnMat.pkl
+test_mat: tstMat.pkl
+
+# 模型参数（小型化以快速测试）
+latdim: 32
+gnn_layer: 1
+layer_num_kg: 1
+mess_dropout_rate: 0.0
+triplet_num: 10
+res_lambda: 0.0
+
+# 扩散模型参数（简化）
+noise_scale: 0.5
+noise_min: 0.0001
+noise_max: 0.01
+diffusion_steps: 100
+d_emb_size: 32
+dims: "[32, 64, 32]"
+norm: 0
+
+# 训练参数（简化）
+e_loss: 0.01
+cl_pattern: 1
+ssl_reg: 0.5
+temp: 0.2
+keepRate: 0.5
+rebuild_k: 5
+sampling_steps: 50
+
+# Runner参数（快速测试）
+tstEpoch: 1
+save_epoch: 5
+early_stop: 3
+diffusion_batch: 16
+train_max_epoch_diff: 1
+
+# 基础训练参数
+lr: 0.001
+l2: 1e-5
+batch_size: 32
+test_batch_size: 32
+epoch: 5  # 只训练5个epoch用于测试
+num_neg: 2
+dropout: 0.1
+test_all: 0

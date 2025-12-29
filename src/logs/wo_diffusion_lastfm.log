@@ -1,0 +1,91 @@
+INFO:root:Namespace(model_mode='', model_name='DiffKGReChorus')
+INFO:root:--------------------------------------------- BEGIN: 2025-12-16 15:22:14 ---------------------------------------------
+INFO:root:
+======================================
+ Arguments            | Values        
+======================================
+ batch_size           | 256          
+ cl_pattern           | 0            
+ d_emb_size           | 64           
+ data_appendix        |              
+ dataset              | lastfm       
+ diffusion_batch      | 256          
+ diffusion_steps      | 0            
+ dims                 | [64, 128, 64]
+ dropout              | 0            
+ e_loss               | 0.0          
+ early_stop           | 10           
+ epoch                | 200          
+ eval_batch_size      | 256          
+ gnn_layer            | 2            
+ gpu                  | 0            
+ keepRate             | 0.1          
+ kg_file              | kg.txt       
+ l2                   | 0            
+ label                | label        
+ latdim               | 64           
+ layer_num_kg         | 2            
+ lr                   | 0.001        
+ main_metric          |              
+ mess_dropout_rate    | 0.1          
+ noise_max            | 0.02         
+ noise_min            | 0.0001       
+ noise_scale          | 1.0          
+ norm                 | 1            
+ num_neg              | 1            
+ num_workers          | 5            
+ optimizer            | Adam         
+ random_seed          | 0            
+ rebuild_k            | 10           
+ res_lambda           | 0.0          
+ sampling_steps       | 1000         
+ save_epoch           | 10           
+ save_final_results   | 1            
+ ssl_reg              | 0.0          
+ temp                 | 0.2          
+ test_all             | 0            
+ test_mat             | tstMat.pkl   
+ topk                 | 5,10,20,50   
+ train_mat            | trnMat.pkl   
+ train_max_epoch_diff | 0            
+ triplet_num          | -1           
+ tstEpoch             | 1            
+======================================
+INFO:root:Device: cuda
+INFO:root:Load corpus from ./data/lastfm/DiffKGReader.pkl
+INFO:root:#params: 11451200
+INFO:root:DiffKGReChorus(
+  (uEmbeds): Embedding(23566, 64)
+  (iEmbeds): Embedding(48123, 64)
+  (eEmbeds): Embedding(106389, 64)
+  (rEmbeds): Embedding(9, 64)
+  (gcnLayers): ModuleList(
+    (0): GCNLayer()
+    (1): GCNLayer()
+  )
+  (rgat): RGAT(
+    (leakyrelu): LeakyReLU(negative_slope=0.2)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (diffusion_model): GaussianDiffusion()
+  (denoise_model): Denoise(
+    (emb_layer): Linear(in_features=64, out_features=64, bias=True)
+    (network): Sequential(
+      (0): Linear(in_features=128, out_features=128, bias=True)
+      (1): Tanh()
+      (2): Dropout(p=0.5, inplace=False)
+      (3): Linear(in_features=128, out_features=128, bias=True)
+      (4): Tanh()
+      (5): Dropout(p=0.5, inplace=False)
+      (6): Linear(in_features=128, out_features=64, bias=True)
+    )
+    (drop): Dropout(p=0.5, inplace=False)
+  )
+)
+INFO:root:Test Before Training: (HR@5:0.0491,NDCG@5:0.0290,HR@10:0.0991,NDCG@10:0.0450,HR@20:0.1982,NDCG@20:0.0697,HR@50:0.4968,NDCG@50:0.1280)
+INFO:root:
+============================================================
+INFO:root:Epoch 1/200
+INFO:root:============================================================
+INFO:root:训练扩散模型 (Epoch 1)
+INFO:root:扩散数据集: 1000 个实体，批次大小: 256

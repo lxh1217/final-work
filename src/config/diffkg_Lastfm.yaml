@@ -1,0 +1,53 @@
+# config/diffkg_lastfm.yaml
+model: DiffKGReChorus
+reader: DiffKGReader
+runner: DiffKGRunner
+
+# 数据参数
+data_path: Datasets/lastfm
+kg_file: kg.txt
+train_mat: trnMat.pkl
+test_mat: tstMat.pkl
+
+# 模型参数
+latdim: 64
+gnn_layer: 2
+layer_num_kg: 2
+mess_dropout_rate: 0.2
+triplet_num: -1
+res_lambda: 0.0
+
+# 扩散模型参数
+noise_scale: 1.0
+noise_min: 0.0001
+noise_max: 0.02
+diffusion_steps: 1000
+d_emb_size: 64
+dims: "[64, 128, 64]"
+norm: 0
+
+# 训练参数
+e_loss: 0.01
+cl_pattern: 1
+ssl_reg: 1.0
+temp: 0.2
+keepRate: 0.1
+rebuild_k: 10
+sampling_steps: 1000
+
+# Runner参数
+tstEpoch: 1
+save_epoch: 10
+early_stop: 20
+diffusion_batch: 256
+train_max_epoch_diff: 1
+
+# 基础训练参数
+lr: 0.001
+l2: 1e-5
+batch_size: 256
+test_batch_size: 256
+epoch: 50
+num_neg: 1
+dropout: 0.2
+test_all: 0
